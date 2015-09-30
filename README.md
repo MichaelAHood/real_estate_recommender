@@ -21,7 +21,7 @@ Here is a diagram of my repo and a brief 10,000 ft overview of what each of the 
   2. `learn_preferences.py` - the guts of the recommedner system 
   3. `load_transform.py` - a class to simplify loading data from MongoDB and transforming it for processing
   4. `pre_processing.py` - a class to transform, normalize, and prep data for use in the recommender
-  * ###pipeline
+  ###pipeline
     1. `get_schools.py` - a class to scrape school data for a given listing and transform it to a Pandas df
     2. `walkscore_api.py` - a class to query WalkScore for walkability and public transit data, and update MongoDB
     3. `web_scraping.py` - a class that streamlines scraping Zillow search results to obtain addresses of listings
