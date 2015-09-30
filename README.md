@@ -17,15 +17,16 @@ In short, this recommender is my first cut at solving the problem of helping a p
 Here is a diagram of my repo and a brief 10,000 ft overview of what each of the files does:
 
 **code**
-  *`image_getter.py` - a class that makes for easily obtaining an image url for a Zillow listing
-  *`learn_preferences.py` - the guts of the recommender system 
-  *`load_transform.py` - a class to simplify loading data from MongoDB and transforming it for processing
-  *`pre_processing.py` - a class to transform, normalize, and prep data for use in the recommender
-  ***pipeline**
-    *`get_schools.py` - a class to scrape school data for a given listing and transform it to a Pandas df
-    * `walkscore_api.py` - a class to query WalkScore for walkability and public transit data, and update MongoDB
-    * `web_scraping.py` - a class that streamlines scraping Zillow search results to obtain addresses of listings
-    * `zillow_api.ipynb` - an iPython notebook that I use for querying the Zillow API, need to convert to a script **data**
+1. `image_getter.py` - a class that makes for easily obtaining an image url for a Zillow listing
+2. `learn_preferences.py` - the guts of the recommender system 
+3. `load_transform.py` - a class to simplify loading data from MongoDB and transforming it for processing
+4. `pre_processing.py` - a class to transform, normalize, and prep data for use in the recommender
+5. ***pipeline**
+  1. `get_schools.py` - a class to scrape school data for a given listing and transform it to a Pandas df
+  2. `walkscore_api.py` - a class to query WalkScore for walkability and public transit data, and update MongoDB
+  3. `web_scraping.py` - a class that streamlines scraping Zillow search results to obtain addresses of listings
+  4. `zillow_api.ipynb` - an iPython notebook that I use for querying the Zillow API, need to convert to a script **data**
+1. seattle
  
 
 
