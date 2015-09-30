@@ -35,11 +35,9 @@ Here is a diagram of my repo and a brief 10,000 ft overview of what each of the 
 3. **seattle**
   1. seattle.csv - a csv of aggregated zillow listings that I queried through the API
   2. bellevue-WA.csv - a csv of address and home ids that I scraped from Zillow search results
-  3. wallingford-seattle-WA.csv - a csv of address and home ids that I scraed
+  3. wallingford-seattle-WA.csv - a csv of address and home ids that I scraped
   4. etc.
  
-
-
 ### Overview
 
 This recommender system is -- at the core -- a content based information retrieval system. Recommendations are made based on the notion of computing a measure of similarity between different listings. A content based recommendner is different from a collaborative based recommeder because the later relies on the ratings of other users to make recommednations to a new user. 
@@ -51,9 +49,13 @@ Since I have no historical data on any users -- a problem known as the "Cold Sta
 The use of different distance metrics is important because the most similar houses to the seed will vary wildly based on how distance is computed. This idea captures the notion that different people value attributes of houses in different ways. For example, a single young professional will be more interested in walkability and nightlife, and less interested in schools and the size of their yard than would a married couple with children.   
 
 ### Problem 3 - How does a given user value a house?
-This leads into the problem of how to choose which distance metric is best for a particular user so that the system can keep serving them relevant recommendations. To solve this problem, I framed the problem like an AB test. Instead of testing multiple versions of a webpage, I am testing multiple versions of suggesting housing recommendations. Additionally, I am showing the multiple version of a  
+This leads into the problem of how to choose which distance metric is best for a particular user so that the system can keep serving them relevant recommendations. To solve this problem, I framed the problem like an AB test. Instead of testing multiple versions of a webpage, I am testing multiple versions of suggesting housing recommendations. Additionally, I also show the same user multiple versions of "similar houses" using different distance metrics in the assumption that their feedback will provide enough data to learn which version of providing recommendations is best for them.
 
-Recommendations are shown two at a time and the user is able to pick the one that they like best. The users choice is recorded and then used to update a probabilisitic "guess" of what measure of similarity is providing the best recommendations for that user. I am intent on the idea of only showing listings two at a time for one particular reason -- humans are notoriously bad at making value judgements from multiple choices when the number of choices exceeds four to five. We are, however, exceptionally good at making pairwise value comparisons. In general, people can quickly take a look at two things and tell you which is better or more preferable. The downside to this approach is that     
+In order to make sure that relevant recommendations are served
+
+Recommendations are shown two at a time and the user is able to pick the one they like best. The users choice is recorded and then used to update a probabilisitic "guess" of what measure of similarity is providing the best recommendations for that user. 
+
+I am intent on the idea of only showing listings two at a time for one particular reason -- humans are notoriously bad at making value judgements from multiple choices when the number of choices exceeds four to five. We are, however, exceptionally good at making pairwise value comparisons. In general, people can quickly take a look at two things and tell you which is better or more preferable. The downside to this approach is that     
 
 
 
@@ -62,9 +64,6 @@ The results are recorded and used to learn the users preference for certain type
 The recommendations are served based on a pair-wise similarity matrix that is computed using multiple custom distance metrics. Each distance metric corresponds to a preference for a certain type of house, e.g. spaciousness, walkability, etc. 
 
 To determine the actual preference for a user, an implementation of the Bayesian Multi-Armed Bandit (MAB) apporach to AB testing is used. As data is collected about a users preferences, the results are used to update the algorithms best guess about what type of user you are (i.e. what are your preferences for a home). The algorithm is biased to serve recommendations in accordance with the best guess, as will also serve recommendations from other similarity metrics -- chosen at random.
-
-How the recommedner works: 
-![alt text](https://github.com/MichaelAHood/real_estate_recommender/blob/master/data/algorithm.png)
 
 This repo is a work in progress and is continually updated as I make progress on my project.
 
