@@ -7,15 +7,28 @@ This is the real estate recommendation system that I built for my final project 
 
 The genesis of this project was to assist me in finding a home. I moved to Seattle in early July and knew nothing of the local area, let alone where I should consider moving my family after I finished school. Sites like Zillow and Trulia are useful for getting access to enormous amounts of information but they create a new problem of having to sift through thousands of choices to find the right place. I find this a tedious process.  
 
-I have always been impressed by how well sites like Amazon and Netflix make recommendations for books and content that I may like -- I am usually pleased with the results of their recommendations!  
+I have always been impressed by how well sites like Amazon and Netflix make recommendations for books and content that I may like. It saves the trouble of sifting through countless options and I am usually pleased with the results of their recommendations!  
 
-I wondered why there couldn't be something similar for finding a place to live? I also assumed that I am not the only one who has the same problem, so I attempted to generalize my solution such that it could benefit a larger group of people in finding the right home.  
+I wondered why there couldn't be something similar for finding a place to live? I also assumed that I am not the only one who has the same problem, so I attempted to generalize my solution such that it could benefit a larger group of people in finding a home.  
 
-In short, this recommender is intended to help a person who is moving from one city to another, find a place to live. 
+In short, this recommender is my first cut at solving the problem of helping a person who is moving from one city to another, find the RIGHT place to live.
 
-The recommender system is -- at the core -- a content based information retrieval system. Recommendations are made based on the notion of computing a measure of similarity between different listings. A content based recommedner is different from a collaborative based recommeder because the later relies on the ratings of other users to make recommednations to a new user. 
+## Overview
 
-I have no historical data on any users
+This recommender system is -- at the core -- a content based information retrieval system. Recommendations are made based on the notion of computing a measure of similarity between different listings. A content based recommendner is different from a collaborative based recommeder because the later relies on the ratings of other users to make recommednations to a new user. 
+
+## The Cold Start Problem
+Since I have no historical data on any users -- a problem known as the "Cold Start Problem" -- I decided to tackle the problem by using a known house that I liked from a previous city as a "seed" for the recommender.  From this initiial seed, recommednations are served using different measures of similarity -- or distance metrics. 
+
+## Problem 1 - How Do Different People Value Houses?
+The use of different distance metrics is important because the most similar houses to the seed will vary wildly based on how distance is computed. This idea captures the notion that different people value attributes of houses in different ways. For example, a single young professional will be more interested in walkability and nightlife, and less interested in schools and the size of their yard than would a married couple with children.   
+
+## Problem 2 - How Does this Person Value Houses?
+This leads into the problem of how to choose which distance metric is best for a particular user so that the system can keep serving them relevant recommendations. To solve this problem, I framed the problem like an AB test. Instead of testing multiple versions of a webpage, I am testing multiple versions of suggesting housing recommendations. Additionally, I am showing the multiple version of a  
+
+Recommendations are shown two at a time and the user is able to pick the one that they like best. The users choice is recorded and then used to update a probabilisitic "guess" of what measure of similarity is providing the best recommendations for that user. I am intent on the idea of only showing listings two at a time for one particular reason -- humans are notoriously bad at making value judgements from multiple choices when the number of choices exceeds four to five. We are, however, exceptionally good at making pairwise value comparisons. In general, people can quickly take a look at two things and tell you which is better or more preferable. The downside to this approach is that     
+
+
 
 The results are recorded and used to learn the users preference for certain types of homes. 
 
