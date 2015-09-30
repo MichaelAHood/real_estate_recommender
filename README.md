@@ -13,17 +13,17 @@ I wondered why there couldn't be something similar for finding a place to live? 
 
 In short, this recommender is my first cut at solving the problem of helping a person who is moving from one city to another, find the RIGHT place to live.
 
-## Overview
+### Overview
 
 This recommender system is -- at the core -- a content based information retrieval system. Recommendations are made based on the notion of computing a measure of similarity between different listings. A content based recommendner is different from a collaborative based recommeder because the later relies on the ratings of other users to make recommednations to a new user. 
 
-## The Cold Start Problem
+### The Cold Start Problem
 Since I have no historical data on any users -- a problem known as the "Cold Start Problem" -- I decided to tackle the problem by using a known house that I liked from a previous city as a "seed" for the recommender.  From this initiial seed, recommednations are served using different measures of similarity -- or distance metrics. 
 
-## Problem 1 - How Do Different People Value Houses?
+### Problem 1 - How Do Different People Value Houses?
 The use of different distance metrics is important because the most similar houses to the seed will vary wildly based on how distance is computed. This idea captures the notion that different people value attributes of houses in different ways. For example, a single young professional will be more interested in walkability and nightlife, and less interested in schools and the size of their yard than would a married couple with children.   
 
-## Problem 2 - How Does this Person Value Houses?
+### Problem 2 - How Does this Person Value Houses?
 This leads into the problem of how to choose which distance metric is best for a particular user so that the system can keep serving them relevant recommendations. To solve this problem, I framed the problem like an AB test. Instead of testing multiple versions of a webpage, I am testing multiple versions of suggesting housing recommendations. Additionally, I am showing the multiple version of a  
 
 Recommendations are shown two at a time and the user is able to pick the one that they like best. The users choice is recorded and then used to update a probabilisitic "guess" of what measure of similarity is providing the best recommendations for that user. I am intent on the idea of only showing listings two at a time for one particular reason -- humans are notoriously bad at making value judgements from multiple choices when the number of choices exceeds four to five. We are, however, exceptionally good at making pairwise value comparisons. In general, people can quickly take a look at two things and tell you which is better or more preferable. The downside to this approach is that     
