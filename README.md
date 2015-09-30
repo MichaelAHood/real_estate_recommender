@@ -26,7 +26,10 @@ Here is a diagram of my repo and a brief 10,000 ft overview of what each of the 
   1. `get_schools.py` - a class to scrape school data for a given listing and transform it to a Pandas df
   2. `walkscore_api.py` - a class to query WalkScore for walkability and public transit data, and update MongoDB
   3. `web_scraping.py` - a class that streamlines scraping Zillow search results to obtain addresses of listings
-  4. `zillow_api.ipynb` - an iPython notebook that I use for querying the Zillow API, need to convert to a script **data**
+  4. `zillow_api.ipynb` - an iPython notebook that I use for querying the Zillow API, need to convert to a script 
+
+**data**
+
 1. san_fran.csv - a csv of zillow listings that I scraped
 2. seattle_schools.txt - a list of all Seattle area schools and their scores from 1-10
 3. seattle
