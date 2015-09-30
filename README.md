@@ -1,7 +1,7 @@
 # Personalized Real Estate Recommender
 
 
-## Introduction
+### Introduction
 
 This is the real estate recommendation system that I built for my final project during the Galvanize Data Science Intesive.
 
