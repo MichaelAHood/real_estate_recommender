@@ -30,13 +30,13 @@ Here is a diagram of my repo and a brief 10,000 ft overview of what each of the 
 
 **data**
 
-1. san_fran.csv - a csv of zillow listings that I scraped
-2. seattle_schools.txt - a list of all Seattle area schools and their scores from 1-10
+1. `san_fran.csv` - a csv of zillow listings that I scraped
+2. `seattle_schools.txt` - a list of all Seattle area schools and their scores from 1-10
 3. **seattle**
-  1. seattle.csv - a csv of aggregated zillow listings that I queried through the API
-  2. bellevue-WA.csv - a csv of address and home ids that I scraped from Zillow search results
-  3. wallingford-seattle-WA.csv - a csv of address and home ids that I scraped
-  4. etc.
+  1. `seattle.csv` - a csv of aggregated zillow listings that I queried through the API
+  2. `bellevue-WA.csv` - a csv of address and home ids that I scraped from Zillow search results
+  3. `wallingford-seattle-WA.csv` - a csv of address and home ids that I scraped
+  4. etc, other csv files for each of the major neighborhoods and surrounding towns
  
 ### Overview
 
