@@ -51,6 +51,10 @@ The use of different distance metrics is important because the most similar hous
 ### Problem 3 - How does a given user value a house?
 This leads into the problem of how to choose which distance metric is best for a particular user so that the system can keep serving them relevant recommendations. To solve this problem, I framed the problem like an AB test. Instead of testing multiple versions of a webpage, I am testing multiple versions of suggesting housing recommendations. Additionally, I also show the same user multiple versions of "similar houses" using different distance metrics in the assumption that their feedback will provide enough data to learn which version of providing recommendations is best for them.
 
+
+## How the recommedner works 
+![alt text](https://github.com/MichaelAHood/real_estate_recommender/blob/master/data/algorithm.png)
+
 In order to make sure that relevant recommendations are served
 
 Recommendations are shown two at a time and the user is able to pick the one they like best. The users choice is recorded and then used to update a probabilisitic "guess" of what measure of similarity is providing the best recommendations for that user. 
