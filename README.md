@@ -63,6 +63,9 @@ The recommendations are served based on a pair-wise similarity matrix that is co
 
 To determine the actual preference for a user, an implementation of the Bayesian Multi-Armed Bandit (MAB) apporach to AB testing is used. As data is collected about a users preferences, the results are used to update the algorithms best guess about what type of user you are (i.e. what are your preferences for a home). The algorithm is biased to serve recommendations in accordance with the best guess, as will also serve recommendations from other similarity metrics -- chosen at random.
 
+How the recommedner works: 
+![alt text](https://github.com/MichaelAHood/real_estate_recommender/blob/master/data/algorithm.png)
+
 This repo is a work in progress and is continually updated as I make progress on my project.
 
 # Documentation
