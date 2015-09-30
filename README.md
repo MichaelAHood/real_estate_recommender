@@ -17,6 +17,7 @@ In short, this recommender is my first cut at solving the problem of helping a p
 Here is a diagram of my repo and a brief 10,000 ft overview of what each of the files does:
 
 **code**
+
 1. `image_getter.py` - class that for easily getting an image url for a Zillow listing
 2. `learn_preferences.py` - the guts of the recommender system 
 3. `load_transform.py` - class for loading data from MongoDB and transforming it for processing
