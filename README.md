@@ -3,7 +3,7 @@
 
 ## Introduction
 
-This is the real estate recommendation system that I built for my final project during the Galvanize Data Science Intesive.
+This is the real estate recommendation system that I built for my final project during the Galvanize Data Science Intensive.
 
 The genesis of this project was to assist me in finding a home. I moved to Seattle in early July and knew nothing of the local area, let alone where I should consider moving my family after I finished school. Sites like Zillow and Trulia are useful for getting access to enormous amounts of information but they create a new problem of having to sift through thousands of choices to find the right place. I find this a tedious process.  
 
@@ -40,10 +40,10 @@ Here is a diagram of my repo and a brief 10,000 ft overview of what each of the 
  
 ### Overview
 
-This recommender system is -- at the core -- a content based information retrieval system. Recommendations are made based on the notion of computing a measure of similarity between different listings. A content based recommendner is different from a collaborative based recommeder because the later relies on the ratings of other users to make recommednations to a new user. 
+This recommender system is -- at the core -- a content based information retrieval system. Recommendations are made based on the notion of computing a measure of similarity between different listings. A content based recommender is different from a collaborative based recommender because the latter relies on the ratings of other users to make recommendations to a new user. 
 
 ### Problem 1 - The Cold Start Problem
-Since I have no historical data on any users -- a problem known as the "Cold Start Problem" -- I decided to tackle the problem by using a known house that I liked from a previous city as a "seed" for the recommender.  From this initiial seed, recommednations are served using different measures of similarity -- or distance metrics. 
+Since I have no historical data on any users -- a problem known as the "Cold Start Problem" -- I decided to tackle the problem by using a known house that I liked from a previous city as a "seed" for the recommender.  From this initial seed, recommendations are served using different measures of similarity -- or distance metrics. 
 
 ### Problem 2 - How do different people value houses?
 The use of different distance metrics is important because the most similar houses to the seed will vary wildly based on how distance is computed. This idea captures the notion that different people value attributes of houses in different ways. For example, a single young professional will be more interested in walkability and nightlife, and less interested in schools and the size of their yard than would a married couple with children.   
@@ -53,10 +53,10 @@ This leads into the problem of how to choose which distance metric is best for a
 
 In order to make sure that relevant recommendations are served while also determining which method of making recommendations is best, I decided to implement a greedy algorithm -- specifically the Bayesian Multi-Armed Bandit (MAB). 
 
-## How the recommedner works 
+## How the recommender works 
 ![alt text](https://github.com/MichaelAHood/real_estate_recommender/blob/master/data/algorithm.png)
 
-Recommendations are shown two at a time and the user is able to pick the one they like best. The users choice is recorded and then used to update a probabilisitic "guess" of what measure of similarity is providing the best recommendations for that user. I am intent on the idea of only showing listings two at a time for one particular reason -- humans are notoriously bad at making value judgements from multiple choices when the number of choices exceeds four to five. We are, however, exceptionally good at making pairwise value comparisons. In general, people can quickly take a look at two things and tell you which is better or more preferable. The downside to this approach is that the user may have to choose listings over a large number of iterations of the algorithm before a high degree of confidence is obtained for the best distance metric.
+Recommendations are shown two at a time and the user is able to pick the one they like best. The user's choice is recorded and then used to update a probabilistic "guess" of what measure of similarity is providing the best recommendations for that user. I am intent on the idea of only showing listings two at a time for one particular reason -- humans are notoriously bad at making value judgements from multiple choices when the number of choices exceeds four to five. We are, however, exceptionally good at making pairwise value comparisons. In general, people can quickly take a look at two things and tell you which is better or more preferable. The downside to this approach is that the user may have to choose listings over a large number of iterations of the algorithm before a high degree of confidence is obtained for the best distance metric.
 
 ## Obtaining the Data
 1. Zillow
@@ -66,5 +66,6 @@ Recommendations are shown two at a time and the user is able to pick the one the
   1. API
 3. Noddle
   1. Scraping
+
 
 
