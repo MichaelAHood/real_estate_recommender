@@ -49,29 +49,22 @@ Since I have no historical data on any users -- a problem known as the "Cold Sta
 The use of different distance metrics is important because the most similar houses to the seed will vary wildly based on how distance is computed. This idea captures the notion that different people value attributes of houses in different ways. For example, a single young professional will be more interested in walkability and nightlife, and less interested in schools and the size of their yard than would a married couple with children.   
 
 ### Problem 3 - How does a given user value a house?
-This leads into the problem of how to choose which distance metric is best for a particular user so that the system can keep serving them relevant recommendations. To solve this problem, I framed the problem like an AB test. Instead of testing multiple versions of a webpage, I am testing multiple versions of suggesting housing recommendations. Additionally, I also show the same user multiple versions of "similar houses" using different distance metrics in the assumption that their feedback will provide enough data to learn which version of providing recommendations is best for them.
+This leads into the problem of how to choose which distance metric is best for a particular user so that the system can keep serving them relevant recommendations. To solve this problem, I framed the problem like an AB test. Instead of testing multiple versions of a webpage, I am testing multiple ways to suggest housing recommendations. Additionally, I also show the same user multiple versions of "similar houses" using different distance metrics in the assumption that their feedback will provide enough data to learn which version of providing recommendations is best for them.
 
-In order to make sure that relevant recommendations are served while also determining which method of making recommendations is best, I decided to implement a greedy algorithm -- specifically the Bayesian Multi-Armed Bandit. 
+In order to make sure that relevant recommendations are served while also determining which method of making recommendations is best, I decided to implement a greedy algorithm -- specifically the Bayesian Multi-Armed Bandit (MAB). 
 
 ## How the recommedner works 
 ![alt text](https://github.com/MichaelAHood/real_estate_recommender/blob/master/data/algorithm.png)
 
 Recommendations are shown two at a time and the user is able to pick the one they like best. The users choice is recorded and then used to update a probabilisitic "guess" of what measure of similarity is providing the best recommendations for that user. I am intent on the idea of only showing listings two at a time for one particular reason -- humans are notoriously bad at making value judgements from multiple choices when the number of choices exceeds four to five. We are, however, exceptionally good at making pairwise value comparisons. In general, people can quickly take a look at two things and tell you which is better or more preferable. The downside to this approach is that the user may have to choose listings over a large number of iterations of the algorithm before a high degree of confidence is obtained for the best distance metric.
 
-The recommendations are served based on a pair-wise similarity matrix that is computed using multiple custom distance metrics. Each distance metric corresponds to a preference for a certain type of house, e.g. spaciousness, walkability, etc. 
+## Obtaining the Data
+1. Zillow
+  1. Scraping
+  2. API
+2. WalkScore
+  1. API
+3. Noddle
+  1. Scraping
 
-To determine the actual preference for a user, an implementation of the Bayesian Multi-Armed Bandit (MAB) apporach to AB testing is used. As data is collected about a users preferences, the results are used to update the algorithms best guess about what type of user you are (i.e. what are your preferences for a home). The algorithm is biased to serve recommendations in accordance with the best guess, as will also serve recommendations from other similarity metrics -- chosen at random.
-
-This repo is a work in progress and is continually updated as I make progress on my project.
-
-# Documentation
-
-## 1. Data Pipeline
-  1. **web_scraping.ipynb** (Prototype code to scrape address and listing id from zillow, can be used with a proxy.  Need to convert this to a script).
-  2. **zillow_api.ipynb** (Ipython notebook to query Zillow API, convert the output into a JSON like format for insertion into MongoDB.  Also writes a csv of listings that could not be accessed via Zillow API - which is over half.)
-  3. **walkable_api.ipynb** (Ipython notebook to query walkable API for addresses, updates MongoDB with the walkscore info for each listing.)
-##2. Cleaning and Processing
-  a. Dealing with missing values
-  b. 
-## 3. Implementing the Recommender
 
