@@ -68,7 +68,7 @@ Below is a description about how I aquired the data for my recommender.
 
     Thankfully, the search results for a Zillow query contain a list of houses with urls. I found that I could parse    the html source for a Zillow query to find the links and retreive the addresses and ZPIDs from the url itself. I simply had to construct a url in the form that would return a zillow search results page for a given city, parse the html and repeat, until I had enough listing addresses and ZPIDs.
 
-To facilitte this process, I wrote the web_scraping.py class. Creating a WebScraping() object and using the associated methods -- including a proxy method that allows the use of tor -- makes this process go relatively smoothly. There is also a paramter to set sleep times between GET requests to avoid making too many requests in a short time and gettin blocked. Despite that, Zillow will eventually catch on and start serving captchas, so I would have to inititalize a new tor circuit and create a new session to resume where I left off, when I was blocked.
+    To facilitte this process, I wrote the web_scraping.py class. Creating a WebScraping() object and using the associated methods -- including a proxy method that allows the use of tor -- makes this process go relatively smoothly. There is also a paramter to set sleep times between GET requests to avoid making too many requests in a short time and gettin blocked. Despite that, Zillow will eventually catch on and start serving captchas, so I would have to inititalize a new tor circuit and create a new session to resume where I left off, when I was blocked.
 
 After scraping both the Seattle and San Francisco Bay areas, I ended up with about 2,000 listings per region, which I wrote to a .csv file.
   
