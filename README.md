@@ -68,18 +68,21 @@ Below is a description about how I aquired the data for my recommender.
 
     Thankfully, the search results for a Zillow query contain a list of houses with urls. I found that I could parse    the html source for a Zillow query to find the links and retreive the addresses and ZPIDs from the url itself. I simply had to construct a url in the form that would return a zillow search results page for a given city, parse the html and repeat, until I had enough listing addresses and ZPIDs.
 
-    To facilitte this process, I wrote the web_scraping.py class. Creating a WebScraping() object and using the associated methods -- including a proxy method that allows the use of tor -- makes this process go relatively smoothly. There is also a paramter to set sleep times between GET requests to avoid making too many requests in a short time and gettin blocked. Despite that, Zillow will eventually catch on and start serving captchas, so I would have to inititalize a new tor circuit and create a new session to resume where I left off, when I was blocked.
+    To facilitte this process, I wrote the `web_scraping.py` class. Creating a `WebScraping()` object and using the associated methods -- including a proxy method that allows the use of tor -- makes this process go relatively smoothly. There is also a paramter to set sleep times between GET requests to avoid making too many requests in a short time and gettin blocked. Despite that, Zillow will eventually catch on and start serving captchas, so I would have to inititalize a new tor circuit and create a new session to resume where I left off, when I was blocked.
 
-After scraping both the Seattle and San Francisco Bay areas, I ended up with about 2,000 listings per region, which I wrote to a .csv file.
+    After scraping both the Seattle and San Francisco Bay areas, I ended up with about 2,000 listings per region, which I wrote to a .csv file.
   
   2. **API** - With the ZPIDs and associated addresses, I was able to construct a series of functions to query the Zillow API. I prototyped this code in an iPython notebook -- and have not yet got around to writing a proper script or class. There are also several other fucntions to parse the API results, structure it, and insert it into a MongoDB collection.
 
-The Zillow API has a daily query limit of 1,000 queries, so I was only able to query about half of the listings for a city each day. This is also when I discovered that about 65-70% of the addresses are not available through the API, so after two days of running API queries, I only ended up with about 700 results of the 2,000 I asked for.
+    The Zillow API has a daily query limit of 1,000 queries, so I was only able to query about half of the listings for a city each day. This is also when I discovered that about 65-70% of the addresses are not available through the API, so after two days of running API queries, I only ended up with about 700 results of the 2,000 I asked for.
 
-2. WalkScore
-  1. API
-3. Noddle
-  1. Scraping
+2. **WalkScore**
+  1. **API** - I came across WalkScore when I was trying to find a way to capture information about the qualities of a neighborhood, such as access to public transit, nearness of grocery stores, restaurants, parks, greenspace, etc. The API returns an 100 point based index for a `Walk_Score` as well as a `Transit_Score` that quantifies many of the above attributes.
+
+    To facilitate this process, I wrote a class called `walkscore_api.py`.
+
+3. **Noddle**
+  1. **Scraping**
 
 
 
