@@ -59,9 +59,23 @@ In order to make sure that relevant recommendations are served while also determ
 Recommendations are shown two at a time and the user is able to pick the one they like best. The user's choice is recorded and then used to update a probabilistic "guess" of what measure of similarity is providing the best recommendations for that user. I am intent on the idea of only showing listings two at a time for one particular reason -- humans are notoriously bad at making value judgements from multiple choices when the number of choices exceeds four to five. We are, however, exceptionally good at making pairwise value comparisons. In general, people can quickly take a look at two things and tell you which is better or more preferable. The downside to this approach is that the user may have to choose listings over a large number of iterations of the algorithm before a high degree of confidence is obtained for the best distance metric.
 
 ## Obtaining the Data
-1. Zillow
-  1. Scraping
-  2. API
+Starting this project I naively assumed that I could easily come across detailed information about large numbers of houses in a given city. This assumption turned out to not be true. Sights like Zillow and Trulia provide fairly detailed information about listings, but the number of listings that they share is extremely limited -- approximately 70% of all Zillow istings are proteced and available to query through the API.
+
+Below is a description about how I aquired the data for my recommender.
+
+1. **Zillow**
+  1. **Scraping** - Zillow has an easy to use API, but the precondition for using the API is that you already have to know the Zillow ID (ZPID) of the house you want to query. Since I wanted all of the houses in Seattle and San Francisco, I needed to find a way to automatically construct a list of address and ZPIDs. 
+
+Thankfully, the search results for a Zillow query contain a list of houses with urls. I found that I could parse the html source for a Zillow query to find the links and retreive the addresses and ZPIDs from the url itself. I simply had to construct a url in the form that would return a zillow search results page for a given city, parse the html and repeat, until I had enough listing addresses and ZPIDs.
+
+To facilitte this process, I wrote the web_scraping.py class. Creating a WebScraping() object and using the associated methods -- including a proxy method that allows the use of tor -- makes this process go relatively smoothly. There is also a paramter to set sleep times between GET requests to avoid making too many requests in a short time and gettin blocked. Despite that, Zillow will eventually catch on and start serving captchas, so I would have to inititalize a new tor circuit and create a new session to resume where I left off, when I was blocked.
+
+After scraping both the Seattle and San Francisco Bay areas, I ended up with about 2,000 listings per region, which I wrote to a .csv file.
+  
+  2. **API** - With the ZPIDs and associated addresses, I was able to construct a series of functions to query the Zillow API. I prototyped this code in an iPython notebook -- and have not yet got around to writing a proper script or class. There are also several other fucntions to parse the API results, structure it, and insert it into a MongoDB collection.
+
+The Zillow API has a daily query limit of 1,000 queries, so I was only able to query about half of the listings for a city each day. This is also when I discovered that about 65-70% of the addresses are not available through the API, so after two days of running API queries, I only ended up with about 700 results of the 2,000 I asked for.
+
 2. WalkScore
   1. API
 3. Noddle
