@@ -70,7 +70,7 @@ Below is a description about how I aquired the data for my recommender.
 
     To facilitte this process, I wrote the `web_scraping.py` class. Creating a `WebScraping()` object and using the associated methods -- including a proxy method that allows the use of tor -- makes this process go relatively smoothly. There is also a paramter to set sleep times between GET requests to avoid making too many requests in a short time and gettin blocked. Despite that, Zillow will eventually catch on and start serving captchas, so I would have to inititalize a new tor circuit and create a new session to resume where I left off, when I was blocked.
 
-    After scraping both the Seattle and San Francisco Bay areas, I ended up with about 2,000 listings per region, which I wrote to a .csv file.
+    After scraping both the Seattle and San Francisco Bay areas, I ended up with about 2,000 listings per region, which I wrote to a `.csv` file.
   
   2. **API** - With the ZPIDs and associated addresses, I was able to construct a series of functions to query the Zillow API. I prototyped this code in an iPython notebook -- and have not yet got around to writing a proper script or class. There are also several other fucntions to parse the API results, structure it, and insert it into a MongoDB collection.
 
@@ -82,7 +82,9 @@ Below is a description about how I aquired the data for my recommender.
     To facilitate this process, I wrote a class called `walkscore_api.py`.
 
 3. **Noddle**
-  1. **Scraping**
+  1. **Scraping** - I was determined to find a way to assess the quality of the schools for a given address. Unfortunately, the vast majority of Zillow API data contains no information about the schools that are near a given listing. To solve this problem, I did two things:
+     1. I found a list of all schools for a given district (thanks again, Zillow!) and manually copied and pasted them into a .txt file because the html source was unscrapable. I think the reason for this is that the information was some sort of dynamically generated content that did not show up in the source html. With all of the school names and scores (1 - 10) in a `.txt` file, I read it into python and parsed the text to build a dictionary with schools as keys and their scores as values.
+     2. Next, I found a site called Noodle.com that will return a list of all schools within a certain distance around a house. Fortunately, this site was scrapable! I wrote another class -- `get_schools.py` -- to iterate through the `.csv`, construct a url with which I can then request the html source from noodle, scrape it and extract the occurences of the schools in schools dict, and aggregate the scores of all of the schools within 5 miles. Using this method I was able to compute an aggregate school index for every single address. 
 
 
 
